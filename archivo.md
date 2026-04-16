@@ -1,14 +1,25 @@
 integrante 1: ryu dagaro dagaroryu@gmail.com
 integrante 2: nicole rodriguez rodriguezmnicole@gmail.com 
 
-tematica: pagina la cual recomienda peliculas 
+tematica: catalorogo digital de peliculas, genero y personal del mundo del cine 
 
-descripcion: una pagina en la cual podes ver la informacion de una pelicula deseada(titulo,director,actores principales, descripcion, categoria), ademas de poder ver las peliculas hechas por un director en especifico o las distintas peliculas de una categoria en especifico 
+descripcion: Es un sitio donde se centraliza la información de distintas películas. Cada película tiene su descripción técnica, el año de estreno y la categoría a la que pertenece (terror, comedia, etc.). Además, el sistema permite registrar a los participantes de cada obra, detallando sus datos personales y el rol que cumplieron, ya sea como parte del elenco o del equipo de producción.
 
-entidades: pelicula, director
+entidades: pelicula, participantes
 
 
-atrbutos: pelicula: id pelicula ,titulo, id de elenco (fk), descripcion, categoria, aÃ±o de publicacion
-elenco: id elenco ,nombre, nacimiento, nacionalidad, roll, 
+atrbutos: pelicula: id pelicula ,titulo, descripcion, categoria, año de publicacion
+participantes: id participantes ,nombre, nacimiento, nacionalidad, rol, id pelicula(fk)
 
-hola
+
+
+
+
+
+ 
+
+
+
+
+
+
