@@ -22,7 +22,7 @@
 
 <?php if (!empty($_SESSION['ID_USER'])): ?>
     <?php 
-        // Si en el controlador cargamos una categoría para editar, usamos sus datos
+    
         $actionForm = isset($categoriaEditando) ? "index.php?action=actualizar-categoria" : "index.php?action=nueva-categoria";
         $valNombre = isset($categoriaEditando) ? $categoriaEditando->nombre : "";
         $valImagen = isset($categoriaEditando) ? $categoriaEditando->imagen : "";

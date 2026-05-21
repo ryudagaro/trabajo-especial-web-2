@@ -1,4 +1,4 @@
-/* --- 1. CONFIGURACIÓN GENERAL --- */
+/*CONFIGURACIÓN GENERAL */
 body {
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
@@ -16,7 +16,7 @@ h1, h2 {
     padding-bottom: 8px;
 }
 
-/* --- 2. ENLACES Y BOTONES --- */
+/* ENLACES Y BOTONES */
 a {
     color: #007bff;
     text-decoration: none;
@@ -45,7 +45,7 @@ a:hover {
     text-decoration: none;
 }
 
-/* --- 3. FORMULARIO DE ALTA Y EDICIÓN --- */
+/* FORMULARIO DE ALTA Y EDICIÓN */
 fieldset {
     background: white;
     padding: 25px;
@@ -121,7 +121,7 @@ form input:focus, form select:focus {
 }
 .btn-cancel:hover { color: #343a40; }
 
-/* --- 4. TABLA DE PELÍCULAS --- */
+/* TABLA DE PELÍCULAS */
 table {
     width: 100%;
     background: white;

@@ -2,15 +2,15 @@
 require_once 'Sección Categorías/categoriacontroller.php';
 require_once 'Sección Películas/PeliculaController.php'; 
 require_once 'Sección Login/auth.controllers.php'; 
-// 1. Definimos una acción por defecto si el usuario no pide nada en la URL
+
 $action = 'peliculas'; 
 
-// 2. Verificamos si el usuario envió una acción específica por la URL
+
 if (!empty($_GET['action'])) {
     $action = $_GET['action'];
 }
 
-// 3. Tabla de ruteo: parseamos la acción para saber qué Controlador llamar
+
 switch ($action) {
     case 'categorias':
         $controller = new CategoriaController();
@@ -43,7 +43,7 @@ switch ($action) {
         break;
 
     case 'editar-pelicula':
-        // Instanciamos el controlador si no está hecho arriba y llamamos a la función
+        
         $controller = new PeliculaController();
         $controller->showEditarPelicula();
         break;
@@ -70,12 +70,12 @@ switch ($action) {
 
     case 'login':
         $controller = new AuthController();
-        $controller->mostrarLogin(); // Este método muestra la pantalla con el formulario
+        $controller->mostrarLogin(); 
         break;
 
     case 'verify':
         $controller = new AuthController();
-        $controller->login(); // Este método procesa cuando le das al botón "Ingresar"
+        $controller->login(); 
         break;
     
     default:

@@ -1,7 +1,5 @@
 <?php
 
-
-
 require_once __DIR__ . '/usuario.models.php';
 require_once __DIR__ . '/auth.views.php';
 
@@ -15,7 +13,7 @@ class AuthController {
     }
 
     public function login() {
-        // Verificamos si vienen por POST los datos de forma segura
+       
         $user = isset($_POST['usuario']) ? $_POST['usuario'] : (isset($_POST['nombre']) ? $_POST['nombre'] : '');
         $password = isset($_POST['password']) ? $_POST['password'] : '';
 
@@ -23,16 +21,14 @@ class AuthController {
             $nombre = $this->model->buscarusuariobynombre($user);
 
             if ($nombre && $nombre->password == $password) {
-                // A. Iniciamos la sesión
+                
                 if (session_status() === PHP_SESSION_NONE) {
                     session_start();
                 }
-
-                // B. Guardamos datos en el "bolsillo" del navegador
+                
                 $_SESSION['ID_USER'] = $nombre->id;
                 $_SESSION['USERNAME'] = $nombre->nombre;
 
-                // C. Lo mandamos a categorías con un freno limpio
                 header("Location: index.php?action=categorias");
                 die();
             } else {
