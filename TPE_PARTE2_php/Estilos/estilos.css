@@ -1,0 +1,182 @@
+/* --- 1. CONFIGURACIÓN GENERAL --- */
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 40px auto;
+    max-width: 900px;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    color: #2b3e50;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 8px;
+}
+
+/* --- 2. ENLACES Y BOTONES --- */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.btn-nav {
+    display: inline-block;
+    background-color: #007bff;
+    color: white !important;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn-nav:hover {
+    background-color: #0056b3;
+    text-decoration: none;
+}
+
+/* --- 3. FORMULARIO DE ALTA Y EDICIÓN --- */
+fieldset {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    margin-bottom: 40px;
+}
+
+fieldset legend {
+    font-size: 1.15em;
+    color: #2b3e50;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 180px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.15s ease-in-out;
+}
+
+form input:focus, form select:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    margin-left: 15px;
+    color: #6c757d;
+    font-weight: 600;
+}
+.btn-cancel:hover { color: #343a40; }
+
+/* --- 4. TABLA DE PELÍCULAS --- */
+table {
+    width: 100%;
+    background: white;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+th {
+    background-color: #f1f3f5;
+    color: #495057;
+    font-weight: 600;
+    text-align: left;
+    padding: 15px;
+    border-bottom: 2px solid #dee2e6;
+}
+
+td {
+    padding: 15px;
+    border-bottom: 1px solid #dee2e6;
+    color: #495057;
+    vertical-align: middle;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+.badge-categoria {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.action-edit {
+    color: #e0a800;
+    font-weight: bold;
+    margin-right: 12px;
+}
+.action-edit:hover { color: #b38600; }
+
+.action-delete {
+    color: #dc3545;
+    font-weight: bold;
+}
+.action-delete:hover { color: #bd2130; }
+
+.status-reading {
+    color: #95a5a6;
+    font-size: 14px;
+    font-style: italic;
+}

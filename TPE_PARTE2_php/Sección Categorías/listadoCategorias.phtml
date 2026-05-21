@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Categorías</title>
+    <link rel="stylesheet" href="Estilos/estilos.css">
+</head>
+<body>
+
+<h1>Sección Administración - Categorías</h1>
+
+<p>
+    <a href="index.php?action=peliculas">>> Administrar Películas</a> | 
+    <?php if (!empty($_SESSION['ID_USER'])): ?>
+        <a href="index.php?action=logout" style="color: blue; font-weight: bold;">[Cerrar Sesión]</a>
+    <?php else: ?>
+        <a href="index.php?action=login" style="color: green; font-weight: bold;">[Iniciar Sesión]</a>
+    <?php endif; ?>
+</p>
+
+<h2>Lista de Categorías Cargadas</h2>
+
+<?php if (!empty($_SESSION['ID_USER'])): ?>
+    <?php 
+        // Si en el controlador cargamos una categoría para editar, usamos sus datos
+        $actionForm = isset($categoriaEditando) ? "index.php?action=actualizar-categoria" : "index.php?action=nueva-categoria";
+        $valNombre = isset($categoriaEditando) ? $categoriaEditando->nombre : "";
+        $valImagen = isset($categoriaEditando) ? $categoriaEditando->imagen : "";
+    ?>
+
+    <form action="<?php echo $actionForm; ?>" method="POST" style="margin-bottom: 20px;">
+        <?php if (isset($categoriaEditando)): ?>
+            <input type="hidden" name="id_categoria" value="<?php echo $categoriaEditando->id_categoria; ?>">
+        <?php endif; ?>
+
+        <label for="nombre"><?php echo isset($categoriaEditando) ? "Editar Categoría:" : "Nueva Categoría:"; ?></label>
+        <input type="text" name="nombre" id="nombre" value="<?php echo $valNombre; ?>" placeholder="Ej: Terror, Ciencia Ficción" required>
+        
+        <input type="text" name="imagen" id="imagen" value="<?php echo $valImagen; ?>" placeholder="URL de la imagen (Opcional)" style="margin-left: 10px; margin-right: 10px;">
+        
+        <button type="submit"><?php echo isset($categoriaEditando) ? "Actualizar" : "Guardar"; ?></button>
+        <?php if (isset($categoriaEditando)): ?>
+            <a href="index.php?action=categorias" style="margin-left: 10px; color: gray; text-decoration: none;">[Cancelar]</a>
+        <?php endif; ?>
+    </form>
+<?php endif; ?>
+
+<?php if (empty($categorias)): ?>
+    <p>No hay categorías cargadas en el sistema actualmente.</p>
+<?php else: ?>
+    <ul>
+        <?php foreach ($categorias as $categoria): ?>
+            <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <?php if (!empty($categoria->imagen)): ?>
+                    <img src="<?php echo $categoria->imagen; ?>" alt="Imagen de <?php echo $categoria->nombre; ?>" style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
+                <?php endif; ?>
+
+                <strong><?php echo $categoria->nombre; ?></strong>
+                
+                <?php if (!empty($_SESSION['ID_USER'])): ?>
+                    <div style="margin-left: 10px;">
+                        <a href="index.php?action=editar-categoria&id=<?php echo $categoria->id_categoria; ?>" style="color: green; text-decoration: none; margin-right: 10px;">[Editar]</a>
+                        
+                        <a href="index.php?action=removeCategoria&id=<?php echo $categoria->id_categoria; ?>" 
+                           style="color: red; text-decoration: none;" 
+                           onclick="return confirm('¿Seguro que querés eliminar esta categoría?')">[Eliminar]</a>
+                    </div>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+</body>
+</html>

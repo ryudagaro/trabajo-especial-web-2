@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Listado de Películas</title>
+    <link rel="stylesheet" href="Estilos/estilos.css">
+</head>
+<body>
+    <h1>Sección Administration - Películas</h1>
+
+    <p><a href="index.php?action=categorias" class="btn-nav"><< Administrar Categorías</a></p>
+
+    <h2>Lista de Películas Disponibles</h2>
+
+    <?php 
+    $isEditing = isset($peliculaEditando) && !empty($peliculaEditando);
+    ?>
+
+    <fieldset>
+        <legend><strong><?php echo $isEditing ? 'Editar Película: ' . $peliculaEditando->titulo : 'Agregar Nueva Película'; ?></strong></legend>
+        
+        <form action="index.php?action=<?php echo $isEditing ? 'actualizar-pelicula' : 'nueva-pelicula'; ?>" method="POST">
+            
+            <?php if ($isEditing): ?>
+                <input type="hidden" name="id_pelicula" value="<?php echo $peliculaEditando->id_pelicula; ?>">
+            <?php endif; ?>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <input type="text" name="titulo" placeholder="Título de la película" required
+                           value="<?php echo $isEditing ? $peliculaEditando->titulo : ''; ?>">
+                </div>
+                   
+                <div class="form-group">
+                    <input type="text" name="director" placeholder="Director" required
+                           value="<?php echo $isEditing ? $peliculaEditando->director : ''; ?>">
+                </div>
+                   
+                <div class="form-group" style="flex: 0; min-width: 130px;">
+                    <input type="number" name="anio" placeholder="Año de estreno" required
+                           value="<?php echo $isEditing ? $peliculaEditando->anio : ''; ?>">
+                </div>
+            
+                <div class="form-group">
+                    <select name="id_categoria" required>
+                        <option value="">-- Elegir Categoría --</option>
+                        <?php foreach ($categorias as $categoria): ?>
+                            <?php 
+                            $selected = ($isEditing && $categoria->id_categoria == $peliculaEditando->id_categoria) ? 'selected' : ''; 
+                            ?>
+                            <option value="<?php echo $categoria->id_categoria; ?>" <?php echo $selected; ?>>
+                                <?php echo $categoria->nombre; ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="btn-submit"><?php echo $isEditing ? 'Actualizar Película' : 'Guardar Película'; ?></button>
+                <?php if ($isEditing): ?>
+                    <a href="index.php?action=peliculas" class="btn-cancel">[Cancelar]</a>
+                <?php endif; ?>
+            </div>
+        </form>
+    </fieldset>
+
+    <?php if (empty($peliculas)): ?>
+        <p>No hay películas cargadas en el sistema.</p>
+    <?php else: ?>
+       <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Director</th>
+                    <th>Año</th>
+                    <th>Categoría</th>
+                    <th style="text-align: center; width: 150px;">Acciones</th> 
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($peliculas as $pelicula): ?>
+                    <tr>
+                        <td><strong><?php echo $pelicula->titulo; ?></strong></td>
+                        <td><?php echo $pelicula->director; ?></td>
+                        <td><?php echo $pelicula->anio; ?></td>
+                        <td><span class="badge-categoria"><?php echo $pelicula->nombre_categoria; ?></span></td>
+                        
+                        <td align="center">
+                            <?php if (isset($_SESSION['ID_USER'])): ?>
+                                <a href="index.php?action=editar-pelicula&id=<?php echo $pelicula->id_pelicula; ?>" class="action-edit">
+                                   [Editar]
+                                </a>
+
+                                <a href="index.php?action=eliminar-pelicula&id=<?php echo $pelicula->id_pelicula; ?>" class="action-delete"
+                                   onclick="return confirm('¿Seguro que querés eliminar la película: <?php echo $pelicula->titulo; ?>?');">
+                                   [Eliminar]
+                                </a>
+                            <?php else: ?>
+                                <span class="status-reading">Solo lectura</span>
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php endif; ?>
+
+</body>
+</html>
