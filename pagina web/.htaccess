@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Esto evita que el ruteador intente procesar archivos que sí existen (como fotos o carpetas)
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # REGLA CLAVE: Cambiamos router.php por index.php
+    RewriteRule ^(.*)$ index.php?action=$1 [QSA,L]
+</IfModule>
